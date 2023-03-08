@@ -1,9 +1,11 @@
 const series = document.getElementById('series')
 const serie = document.getElementById('serie').content
 const fragment = document.createDocumentFragment()
-const link = 'https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=Peaky%20Blinders&search_type=1'
+const texto = document.getElementById('paises')
+const link = 'https://watchmode.p.rapidapi.com/autocomplete-search/?search_value='+texto+'&search_type=1'
 
 let tvseries = []
+
 
 document.addEventListener('DOMContentLoaded', () => {
     cargaSeries()
@@ -17,6 +19,8 @@ const cargaSeries = () => {
             'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
         }
     };
+
+    console.log('pais', texto.value)
     
     fetch(link, options) //para buscar con 2 nombres %20
         .then(response => response.json())
