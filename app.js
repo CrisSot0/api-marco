@@ -1,17 +1,12 @@
 const series = document.getElementById('series')
 const serie = document.getElementById('serie').content
+const btnLoad = document.getElementById('btnLoad')
 const fragment = document.createDocumentFragment()
-const texto = document.getElementById('paises')
-const link = 'https://watchmode.p.rapidapi.com/autocomplete-search/?search_value='+texto+'&search_type=1'
-
+const selector = document.getElementById('selector')
 let tvseries = []
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    cargaSeries()
-})
-
-const cargaSeries = () => {
+btnLoad.addEventListener('click', () =>{
+    
     const options = {
         method: 'GET',
         headers: {
@@ -19,26 +14,28 @@ const cargaSeries = () => {
             'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
         }
     };
-
-    console.log('pais', texto.value)
     
-    fetch(link, options) //para buscar con 2 nombres %20
+    console.log('Serie: ',selector.value)
+
+    fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${selector.value}&search_type=1`, options) //para buscar con 2 nombres %20
         .then(response => response.json())
         .then(response => {
             tvseries = response.results
-            dibujaSeries()
-            console.log(response)
+            console.log(tvseries)
+            creaTarjetas()
         })
-        .catch(err => console.error(err));
-}
+        .catch(err => console.log(err));
+})
 
-const dibujaSeries = () => {
+const creaTarjetas = () => {
     tvseries.forEach((item) => {
-        serie.querySelector('img').setAttribute('src', item.image_url),
-        serie.querySelector('h1').textContent = item.name
-
-        const clone = serie.cloneNode(true)
-        fragment.appendChild(clone)
+    serie.querySelector('img').setAttribute('src', item.image_url)
+    serie.querySelector('h1').textContent = item.name
+    const clone = serie.cloneNode(true)
+    fragment.appendChild(clone)
     })
     series.appendChild(fragment)
 }
+    
+
+
