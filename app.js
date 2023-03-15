@@ -35,13 +35,33 @@ btnLoad.addEventListener('click', () => {
                 creaTarjetas()
             })
             .catch(err => console.log(err));
+
+            const optiones = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'eceb7882b1msh983c54bc02fb5c2p13ee3ajsn9e9bbe1a3761',
+                    'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+                }
+            };
+            
+            fetch(`https://watchmode.p.rapidapi.com/title/314817/details/?language=ES`, optiones)
+                .then(response => response.json())
+                .then(response => {
+                    tvseries = response
+                    console.log(tvseries)
+                })
+                .catch(err => console.error(err));
     }
 })
+
+    
 
 const creaTarjetas = () => {
     tvseries.forEach((item) => {
     serie.querySelector('img').setAttribute('src', item.image_url)
     serie.querySelector('h1').textContent = item.name
+    serie.getElementById('pepino').textContent = item.tmdb_type
+    serie.getElementById('pepita').textContent = item.year
     const clone = serie.cloneNode(true)
     fragment.appendChild(clone)
     })
