@@ -5,31 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Series</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="boton">
-        <input type="text" id="inputText">
-    </div>
-
-    <div class="boton">
-        <button class="btn" id="btnLoad">Buscar</button>
-        <input type="button" value="Recargar" onclick="recargar()">
-    </div>
-
-    <div class="series" id="series">
-    </div>
-
-
-    <template id="serie">
-        <div>
-            <img src="" alt="">
-            <h1>Serie</h1>
-            <h3 id="pepita"></h3>
-            <p id="pepino"></p>
-            <p id="relevance"></p>
+<header>
+    <h1 class="tituprinci">BUSCADOR DE PELICULAS, SERIES O LO QUE SE TE OCURRA</h1>
+    <div class="cajon">
+        <input type="text" id="inputText" class="inputi">
+        <div class="boton">
+            <button class="btn" id="btnLoad">Buscar</button>
+            <input type="button" class="recargar" value="Recargar" onclick="recargar()">
         </div>
-    </template>
-    
+    </div>
+</header>
+<body>
+    <div class="series" id="series">
+        <template id="serie">
+            <div class="contenido">
+                <img src="" alt="" class="imagen">
+                <h1 class="textos">Serie</h1>
+                <h3 id="pepita" class="textos"></h3>
+                <h3 id="pepino" class="textos"></h3>
+            </div>
+        </template>
+    </div>
+
+
     <script src="app.js"></script>
 </body>
 </html>
